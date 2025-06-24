@@ -14,10 +14,10 @@ export type CategoryType =
 export interface Transaction {
   id: string;
   // title: string;
-  category: CategoryType;
-  // amount: number;
-  // created_at: string;
-  // user_id: string;
+  user_id: string;
+  created_at: string;
+  // category: CategoryType;
+  amount: number;
 }
 
 // Summary interface
