@@ -10,7 +10,7 @@ const coffeeTheme = {
   white: "#FFFFFF",
   textLight: "#9A8478",
   expense: "#E74C3C",
-  income: "#2ECC71",
+  income: "#247147",
   card: "#FFFFFF",
   shadow: "#000000",
 };

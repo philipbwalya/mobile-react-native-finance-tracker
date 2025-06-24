@@ -10,10 +10,10 @@ interface Transaction {
   type: string;
 }
 
-interface Summary {
+interface SummaryProps {
   balance: number;
   income: number;
-  expenses: number;
+  expense: number;
 }
 
 
@@ -21,10 +21,10 @@ const API_URL = "https://finance-tracker-backend-0zut.onrender.com/api"
 
 export const useTransactions = (user_id: string) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const[summary, setSummary] = useState<Summary>({
+  const[summary, setSummary] = useState<SummaryProps>({
     balance: 0,
     income: 0,
-    expenses: 0,
+    expense: 0,
   });
   const [isLoading,setIsLoading] = useState(false);
   // fetch transactions
@@ -43,7 +43,14 @@ export const useTransactions = (user_id: string) => {
     try {
     const response = await fetch(`${API_URL}/transactions/summary/${user_id}`);
     const data = await response.json();
-    setSummary(data);
+    
+    const convertedSummary = {
+      balance: parseFloat(data.balance || 0),
+      income: parseFloat(data.income || 0),
+      expense: parseFloat(data.expense || 0)
+    };
+    
+    setSummary(convertedSummary);
     } catch (error) {
       console.log("Error fetching summary",error);
     }  

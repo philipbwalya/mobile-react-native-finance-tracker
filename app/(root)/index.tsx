@@ -1,11 +1,30 @@
 import { styles } from "@/assets/styles/home.styles";
+import { BalanceCard } from "@/components/BalanceCard";
 import Loader from "@/components/Loader";
 import { SignOutButton } from "@/components/SignOutButton";
+import { TransactionItem } from "@/components/TransactionItem";
 import UserAvatar from "@/components/UserAvatar";
+import { COLORS } from "@/constants/colors";
 import { useTransactions } from "@/hooks/useTransactions";
 import { useUser } from "@clerk/clerk-expo";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { useEffect } from "react";
-import { Text, View } from "react-native";
+import { Alert, FlatList, Text, TouchableOpacity, View } from "react-native";
+
+export interface TransactionProps {
+  id: string;
+  amount: number;
+  category: string;
+  date: string;
+  description: string;
+  type: string;
+}
+
+export interface SummaryProps {
+  balance: number;
+  expense: number;
+  income: number;
+}
 
 export default function Page() {
   const { user } = useUser();
@@ -16,9 +35,24 @@ export default function Page() {
     loadData();
   }, [loadData]);
 
-  console.log("transactions", transactions);
-  console.log("summary:,", summary);
-  console.log(user?.id);
+  const handleDelete = async (id: string) => {
+    Alert.alert("Delete Transaction", "Are you sure you want to delete?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: async () => {
+          await deleteTransaction(id);
+        },
+      },
+    ]);
+  };
+
+  console.log("transactions", transactions[0]);
+  // console.log("summary:,", summary);
 
   if (isLoading) return <Loader />;
 
@@ -44,8 +78,28 @@ export default function Page() {
           <SignOutButton />
         </View>
         {/* balance section. */}
-        <View></View>
+        <BalanceCard summary={summary} />
+        {/* Add Button */}
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => console.log("hello")}
+        >
+          <AntDesign name="plus" size={24} color={COLORS.white} />
+          <Text style={styles.addButtonText}>Add Transaction</Text>
+        </TouchableOpacity>
+        {/* transactions */}
+        <View style={styles.transactionsHeaderContainer}>
+          <Text style={styles.sectionTitle}>Past Transactions</Text>
+        </View>
       </View>
+      <FlatList
+        style={styles.transactionsList}
+        contentContainerStyle={styles.transactionsListContent}
+        data={transactions}
+        renderItem={({ item }) => (
+          <TransactionItem item={item} onDelete={handleDelete(item.id)} />
+        )}
+      />
     </View>
   );
 }

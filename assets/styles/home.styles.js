@@ -57,9 +57,10 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 24,
+    borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -108,11 +109,12 @@ export const styles = StyleSheet.create({
   },
   balanceStats: {
     flexDirection: "row",
+    flexGrow: 1,
     justifyContent: "space-between",
   },
   balanceStatItem: {
     flex: 1,
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   statDivider: {
     borderRightWidth: 1,
