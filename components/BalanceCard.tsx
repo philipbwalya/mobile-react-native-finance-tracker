@@ -1,4 +1,4 @@
-import { SummaryProps } from "@/app/(root)";
+import { SummaryProps } from "@/types";
 import { Text, View } from "react-native";
 import { styles } from "../assets/styles/home.styles";
 import { COLORS } from "../constants/colors";

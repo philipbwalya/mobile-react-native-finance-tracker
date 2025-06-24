@@ -11,21 +11,6 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { useEffect } from "react";
 import { Alert, FlatList, Text, TouchableOpacity, View } from "react-native";
 
-export interface TransactionProps {
-  id: string;
-  amount: number;
-  category: string;
-  date: string;
-  description: string;
-  type: string;
-}
-
-export interface SummaryProps {
-  balance: number;
-  expense: number;
-  income: number;
-}
-
 export default function Page() {
   const { user } = useUser();
   const { transactions, summary, isLoading, loadData, deleteTransaction } =
@@ -44,9 +29,7 @@ export default function Page() {
       {
         text: "Delete",
         style: "destructive",
-        onPress: async () => {
-          await deleteTransaction(id);
-        },
+        onPress: () => deleteTransaction(id),
       },
     ]);
   };
@@ -102,25 +85,4 @@ export default function Page() {
       />
     </View>
   );
-}
-
-{
-  /* <SignedIn>
-  <Text style={{ marginBottom: 20 }}>
-    Hello, {user?.emailAddresses[0].emailAddress}
-  </Text>
-  <Text>Balance: {summary.balance}</Text>
-  <Text>Balance: {summary.income}</Text>
-  <Text>Balance: {summary.expenses}</Text>
-  <Text>user: {user?.id}</Text>
-  <SignOutButton />
-  </SignedIn>
-  <SignedOut>
-  <Link href="/(auth)/sign-in">
-  <Text>Sign in</Text>
-  </Link>
-  <Link href="/(auth)/sign-up">
-    <Text>Sign up</Text>
-    </Link>
-</SignedOut> */
 }
