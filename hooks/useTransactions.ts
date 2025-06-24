@@ -1,0 +1,83 @@
+import { useCallback, useState } from "react";
+import { Alert } from "react-native";
+
+interface Transaction {
+  id: string;
+  amount: number;
+  category: string;
+  date: string;
+  description: string;
+  type: string;
+}
+
+interface Summary {
+  balance: number;
+  income: number;
+  expenses: number;
+}
+
+
+const API_URL = "https://finance-tracker-backend-0zut.onrender.com/api"
+
+export const useTransactions = (user_id: string) => {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const[summary, setSummary] = useState<Summary>({
+    balance: 0,
+    income: 0,
+    expenses: 0,
+  });
+  const [isLoading,setIsLoading] = useState(false);
+  // fetch transactions
+  const fetchTransactions = useCallback(async () => {
+    try {
+    const response = await fetch(`${API_URL}/transactions/${user_id}`);
+    const data = await response.json();
+    setTransactions(data);
+    } catch (error) {
+      console.log("Error fetching transactions",error);
+    }
+  },[user_id]);
+
+  // fetch summary
+    const fetchSummary = useCallback(async () => {
+    try {
+    const response = await fetch(`${API_URL}/transactions/summary/${user_id}`);
+    const data = await response.json();
+    setSummary(data);
+    } catch (error) {
+      console.log("Error fetching summary",error);
+    }  
+  },[user_id]);
+  
+  // load data
+  const loadData = useCallback(async () => {
+    if(!user_id) return;
+    try {
+      setIsLoading(true);
+      await Promise.all([fetchTransactions(),fetchSummary()]);
+    } catch (error) {
+      console.log("Error loading data",error);
+    }finally{
+      setIsLoading(false);
+    }
+  },[user_id,fetchTransactions,fetchSummary]);
+
+// delete transaction
+  const deleteTransaction = async (id: string) => {
+    try {
+    const response = await fetch(`${API_URL}/transactions/${id},{method: "DELETE"}`);
+    if(!response.ok){
+      throw new Error("Failed to delete transaction");
+    }
+    // refresh data after deleting
+    await loadData();
+    Alert.alert("Success","Transaction deleted successfully");
+    } catch (error) {
+      console.log("Error fetching summary",error);
+      const errorMessage = (error as any)?.message
+      Alert.alert("Error",errorMessage || "Something went wrong");
+    }  
+  };
+
+  return { transactions, summary, isLoading, loadData, deleteTransaction };  
+};
