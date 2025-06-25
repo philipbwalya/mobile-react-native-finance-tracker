@@ -1,20 +1,21 @@
+import { SummaryProps, Transaction } from "@/types";
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
 
-interface Transaction {
-  id: string;
-  amount: number;
-  category: string;
-  date: string;
-  description: string;
-  type: string;
-}
+// interface Transaction {
+//   id: string;
+//   amount: number;
+//   category: string;
+//   date: string;
+//   description: string;
+//   type: string;
+// }
 
-interface SummaryProps {
-  balance: number;
-  income: number;
-  expense: number;
-}
+// interface SummaryProps {
+//   balance: number;
+//   income: number;
+//   expense: number;
+// }
 
 
 const API_URL = "https://finance-tracker-backend-0zut.onrender.com/api"

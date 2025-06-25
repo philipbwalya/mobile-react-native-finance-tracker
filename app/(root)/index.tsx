@@ -80,7 +80,7 @@ export default function Page() {
         contentContainerStyle={styles.transactionsListContent}
         data={transactions}
         renderItem={({ item }) => (
-          <TransactionItem item={item} onDelete={handleDelete(item.id)} />
+          <TransactionItem item={item} onDelete={() => handleDelete(item.id)} />
         )}
       />
     </View>

@@ -3,7 +3,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../assets/styles/home.styles";
 import { COLORS } from "../constants/colors";
-import { formatDate } from "../lib/utils";
 
 // Map categories to their respective icons
 const CATEGORY_ICONS: Record<CategoryType, keyof typeof Ionicons.glyphMap> = {
@@ -47,7 +46,7 @@ export const TransactionItem = ({ item, onDelete }: TransactionItemProps) => {
           {isIncome ? "+" : "-"}${Math.abs(Number(item.amount)).toFixed(2)}
         </Text>
         <Text style={styles.transactionDate}>
-          {formatDate(item.created_at)}
+          {/* {formatDate(item.created_at)} */}
         </Text>
       </View>
       <TouchableOpacity
