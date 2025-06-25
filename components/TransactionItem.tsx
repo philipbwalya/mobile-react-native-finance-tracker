@@ -1,3 +1,4 @@
+import { formatDate } from "@/lib/utils";
 import { CategoryType, TransactionItemProps } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -46,7 +47,7 @@ export const TransactionItem = ({ item, onDelete }: TransactionItemProps) => {
           {isIncome ? "+" : "-"}${Math.abs(Number(item.amount)).toFixed(2)}
         </Text>
         <Text style={styles.transactionDate}>
-          {/* {formatDate(item.created_at)} */}
+          {formatDate(item.created_at)}
         </Text>
       </View>
       <TouchableOpacity
