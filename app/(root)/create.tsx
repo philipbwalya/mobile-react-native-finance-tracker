@@ -74,8 +74,6 @@ const Create = () => {
     } finally {
       setIsLoading(false);
     }
-
-    // continue with transaction creation logic...
   };
 
   return (
