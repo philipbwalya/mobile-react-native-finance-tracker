@@ -33,8 +33,10 @@ export const TransactionItem = ({ item, onDelete }: TransactionItemProps) => {
           />
         </View>
         <View style={styles.transactionLeft}>
-          {/* <Text style={styles.transactionTitle}>{item.title}</Text> */}
-          <Text style={styles.transactionCategory}>{item.category}</Text>
+          <Text style={styles.transactionTitle}>{item.title}</Text>
+          <Text style={[styles.transactionCategory, { color: "#585959" }]}>
+            {item.category}
+          </Text>
         </View>
       </TouchableOpacity>
       <View style={styles.transactionRight}>
@@ -46,7 +48,7 @@ export const TransactionItem = ({ item, onDelete }: TransactionItemProps) => {
         >
           {isIncome ? "+" : "-"}${Math.abs(Number(item.amount)).toFixed(2)}
         </Text>
-        <Text style={styles.transactionDate}>
+        <Text style={[styles.transactionDate, { color: "#585959" }]}>
           {formatDate(item.created_at)}
         </Text>
       </View>

@@ -1,6 +1,7 @@
 import { styles } from "@/assets/styles/home.styles";
 import { BalanceCard } from "@/components/BalanceCard";
 import Loader from "@/components/Loader";
+import NoTransactionsFound from "@/components/NoTransactionsFound";
 import { SignOutButton } from "@/components/SignOutButton";
 import { TransactionItem } from "@/components/TransactionItem";
 import UserAvatar from "@/components/UserAvatar";
@@ -8,17 +9,33 @@ import { COLORS } from "@/constants/colors";
 import { useTransactions } from "@/hooks/useTransactions";
 import { useUser } from "@clerk/clerk-expo";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { useEffect } from "react";
-import { Alert, FlatList, Text, TouchableOpacity, View } from "react-native";
+import { router } from "expo-router";
+import { useEffect, useState } from "react";
+import {
+  Alert,
+  FlatList,
+  RefreshControl,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function Page() {
   const { user } = useUser();
   const { transactions, summary, isLoading, loadData, deleteTransaction } =
+    // useTransactions("user?.id ?? ");
     useTransactions(user?.id ?? "");
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     loadData();
   }, [loadData]);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await loadData();
+    setRefreshing(false);
+  };
 
   const handleDelete = async (id: string) => {
     Alert.alert("Delete Transaction", "Are you sure you want to delete?", [
@@ -36,8 +53,9 @@ export default function Page() {
 
   console.log("transactions", transactions[0]);
   // console.log("summary:,", summary);
+  console.log("userId", user?.id);
 
-  if (isLoading) return <Loader />;
+  if (isLoading && !refreshing) return <Loader />;
 
   return (
     <View style={styles.container}>
@@ -65,7 +83,7 @@ export default function Page() {
         {/* Add Button */}
         <TouchableOpacity
           style={styles.addButton}
-          onPress={() => console.log("hello")}
+          onPress={() => router.push("/create")}
         >
           <AntDesign name="plus" size={24} color={COLORS.white} />
           <Text style={styles.addButtonText}>Add Transaction</Text>
@@ -82,6 +100,10 @@ export default function Page() {
         renderItem={({ item }) => (
           <TransactionItem item={item} onDelete={() => handleDelete(item.id)} />
         )}
+        ListEmptyComponent={<NoTransactionsFound />}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       />
     </View>
   );

@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
   },
   avatar: {
     borderRadius: 50,
+    overflow: "hidden",
+    resizeMode: "contain",
   },
 });
 

@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: COLORS.lightBackground,
     paddingHorizontal: 0,
     paddingVertical: 12,
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 14,
-    color: COLORS.textLight,
+    color: COLORS.textSecondary,
     marginBottom: 2,
   },
   usernameText: {
@@ -66,6 +66,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    marginBottom: 15,
   },
   addButtonText: {
     color: COLORS.white,
@@ -85,8 +86,8 @@ export const styles = StyleSheet.create({
   balanceCard: {
     backgroundColor: COLORS.card,
     borderRadius: 20,
-    padding: 20,
-    marginBottom: 20,
+    padding: 10,
+    marginBottom: 10,
     shadowColor: COLORS.shadow,
     shadowOffset: {
       width: 0,
@@ -98,7 +99,7 @@ export const styles = StyleSheet.create({
   },
   balanceTitle: {
     fontSize: 16,
-    color: COLORS.textLight,
+    color: COLORS.textSecondary,
     marginBottom: 8,
   },
   balanceAmount: {
@@ -122,7 +123,7 @@ export const styles = StyleSheet.create({
   },
   balanceStatLabel: {
     fontSize: 14,
-    color: COLORS.textLight,
+    color: COLORS.textSecondary,
     marginBottom: 4,
   },
   balanceStatAmount: {
@@ -133,7 +134,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: COLORS.text,
-    marginBottom: 15,
+    marginBottom: 5,
   },
   transactionCard: {
     backgroundColor: COLORS.card,
@@ -176,10 +177,11 @@ export const styles = StyleSheet.create({
   },
   transactionCategory: {
     fontSize: 14,
-    color: COLORS.textLight,
+    color: COLORS.textSecondary,
   },
   transactionRight: {
     alignItems: "flex-end",
+    paddingRight: 10,
   },
   transactionAmount: {
     fontSize: 16,
@@ -255,12 +257,12 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 1,
     paddingBottom: 5,
   },
   transactionsList: {
     flex: 1,
-    marginHorizontal: 20,
+    marginHorizontal: 15,
   },
   transactionsListContent: {
     paddingBottom: 20,

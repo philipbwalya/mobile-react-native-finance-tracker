@@ -15,7 +15,7 @@ const coffeeTheme = {
   shadow: "#000000",
 };
 const midnightTheme = {
-  primary: "#7C4DFF",
+  primary: "#390dbc",
   background: "#000000",
   lightBackground: "#0E0E11",
   text: "#FFFFFF",  
@@ -25,13 +25,11 @@ const midnightTheme = {
   white: "#FFFFFF",  
   textLight: "#7C4DFF", 
   expense: "#EF5350", 
-  income: "#26A69A",
+  income: "#06d355",
   shadow: "#000000",
   warning: "#FFB300",
   info: "#4FC3F7",
   accent: "#424242",
-  // chartSpent: "#7E57C2",
-  // chartRemaining: "#4DB6AC",
   inputBackground: "#1E1E23",
   inputText: "#FFFFFF",
   placeholder: "#888888",

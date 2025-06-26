@@ -1,0 +1,1 @@
+export const API_URL = "https://finance-tracker-backend-0zut.onrender.com/api"

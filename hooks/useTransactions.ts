@@ -1,3 +1,4 @@
+import { API_URL } from "@/constants/api";
 import { SummaryProps, Transaction } from "@/types";
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
@@ -18,7 +19,7 @@ import { Alert } from "react-native";
 // }
 
 
-const API_URL = "https://finance-tracker-backend-0zut.onrender.com/api"
+
 
 export const useTransactions = (user_id: string) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -73,12 +74,14 @@ export const useTransactions = (user_id: string) => {
 // delete transaction
   const deleteTransaction = async (id: string) => {
     try {
-    const response = await fetch(`${API_URL}/transactions/${id},{method: "DELETE"}`);
+    const response = await fetch(`${API_URL}/transactions/${id}`,{method: "DELETE"});
+    console.log("response",response);
     if(!response.ok){
+      await loadData();
       throw new Error("Failed to delete transaction");
     }
     // refresh data after deleting
-    await loadData();
+    setTransactions(prev => prev.filter(t => t.id !== id));
     Alert.alert("Success","Transaction deleted successfully");
     } catch (error) {
       console.log("Error fetching summary",error);
