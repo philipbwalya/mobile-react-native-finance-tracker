@@ -3,23 +3,6 @@ import { SummaryProps, Transaction } from "@/types";
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
 
-// interface Transaction {
-//   id: string;
-//   amount: number;
-//   category: string;
-//   date: string;
-//   description: string;
-//   type: string;
-// }
-
-// interface SummaryProps {
-//   balance: number;
-//   income: number;
-//   expense: number;
-// }
-
-
-
 
 export const useTransactions = (user_id: string) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
