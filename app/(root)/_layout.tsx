@@ -9,6 +9,6 @@ export default function ProtectedLayout() {
   if (!isSignedIn) return <Redirect href={"/sign-in"} />;
 
   return (
-    <Stack screenOptions={{ headerShown: false, statusBarStyle: "dark" }} />
+    <Stack screenOptions={{ headerShown: false, statusBarStyle: "auto" }} />
   );
 }

@@ -96,5 +96,5 @@ export const THEMES = {
 };
 
 // 👇 change this to switch theme
-export const COLORS = THEMES.coffee;
-// export const COLORS = THEMES.dark
+// export const COLORS = THEMES.coffee;
+export const COLORS = THEMES.dark
