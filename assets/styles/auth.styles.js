@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   linkText: {
-    color: COLORS.primary,
+    color: COLORS.textLight,
     fontSize: 16,
     fontWeight: "600",
   },

@@ -21,7 +21,7 @@ const midnightTheme = {
   text: "#FFFFFF",  
   textSecondary: "#B0B0B0", 
   border: "#1C1C1FF",  
-  card: "#1A1A1D",  
+  card: "#121418",  
   white: "#FFFFFF",  
   textLight: "#7C4DFF", 
   expense: "#EF5350", 

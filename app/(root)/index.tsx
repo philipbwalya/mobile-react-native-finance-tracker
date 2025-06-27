@@ -68,7 +68,7 @@ export default function Page() {
               source={{ uri: "https://dummyimage.com/100x100/000/fff" }}
               size={48}
             />
-            <View>
+            <View style={{ paddingLeft: 10 }}>
               <Text style={styles.welcomeText}>Hello,👋</Text>
               <Text style={styles.usernameText}>
                 {user?.emailAddresses[0].emailAddress.split("@")[0]}

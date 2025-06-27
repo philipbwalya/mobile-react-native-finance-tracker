@@ -61,7 +61,7 @@ export default function Page() {
     >
       <View style={styles.container}>
         <Image
-          source={require("@/assets/images/revenue-i4.png")}
+          source={require("@/assets/images/Investing-bro.png")}
           style={styles.illustration}
         />
         <Text style={styles.title}>Sign in</Text>
