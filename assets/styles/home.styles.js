@@ -72,6 +72,7 @@ export const styles = StyleSheet.create({
     color: COLORS.white,
     fontWeight: "600",
     marginLeft: 4,
+    fontSize: 17,
   },
   logoutButton: {
     padding: 10,

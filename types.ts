@@ -1,5 +1,7 @@
 // types/transaction.types.ts
 
+import { Ionicons } from "@expo/vector-icons";
+
 // Define the available categories
 export type CategoryType = 
   | "Food & Drinks"
@@ -9,6 +11,13 @@ export type CategoryType =
   | "Bills"
   | "Income"
   | "Other";
+
+// Define the type for category with proper icon typing
+export type Category = {
+  id: string;
+  name: string;
+  icon: keyof typeof Ionicons.glyphMap; // This ensures only valid Ionicons names
+};
 
 // Transaction interface
 export interface Transaction {

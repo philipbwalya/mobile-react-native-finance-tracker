@@ -150,6 +150,7 @@ export const styles = StyleSheet.create({
   categoryButtonText: {
     color: COLORS.text,
     fontSize: 14,
+    paddingLeft: 4,
   },
   categoryButtonTextActive: {
     color: COLORS.white,

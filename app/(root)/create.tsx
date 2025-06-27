@@ -1,13 +1,14 @@
 import { styles } from "@/assets/styles/create.styles";
 import { API_URL } from "@/constants/api";
 import { COLORS } from "@/constants/colors";
+import { Category } from "@/types";
 import { useUser } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-const CATEGORIES = [
+const CATEGORIES: Category[] = [
   { id: "food", name: "Food & Drinks", icon: "fast-food" },
   { id: "shopping", name: "Shopping", icon: "cart" },
   { id: "transportation", name: "Transportation", icon: "car" },
@@ -145,6 +146,73 @@ const Create = () => {
               Income
             </Text>
           </TouchableOpacity>
+        </View>
+        {/* AMOUNT CONTAINER */}
+        <View style={styles.amountContainer}>
+          <Text style={styles.currencySymbol}>$</Text>
+          <TextInput
+            style={styles.amountInput}
+            placeholder="0.00"
+            placeholderTextColor={COLORS.textLight}
+            value={amount}
+            onChangeText={setAmount}
+            keyboardType="numeric"
+          />
+        </View>
+
+        {/* INPUT CONTAINER */}
+        <View style={styles.inputContainer}>
+          <Ionicons
+            name="create-outline"
+            size={22}
+            color={COLORS.textLight}
+            style={styles.inputIcon}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Transaction Title"
+            placeholderTextColor={COLORS.textLight}
+            value={title}
+            onChangeText={setTitle}
+          />
+        </View>
+        {/* title */}
+        <Text style={styles.sectionTitle}>
+          <Ionicons name="pricetag-outline" size={16} color={COLORS.text} />{" "}
+          Category
+        </Text>
+        {/* CATEGORY SELECTOR */}
+        <View style={styles.categoryGrid}>
+          {CATEGORIES.map((category) => (
+            <TouchableOpacity
+              key={category.id}
+              style={[
+                styles.categoryButton,
+                selectedCategory === category.name &&
+                  styles.categoryButtonActive,
+              ]}
+              onPress={() => setSelectedCategory(category.name)}
+            >
+              <Ionicons
+                name={category.icon}
+                size={20}
+                color={
+                  selectedCategory === category.name
+                    ? COLORS.white
+                    : COLORS.textLight
+                }
+              />
+              <Text
+                style={[
+                  styles.categoryButtonText,
+                  selectedCategory === category.name &&
+                    styles.categoryButtonTextActive,
+                ]}
+              >
+                {category.name}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </View>
       </View>
     </View>
