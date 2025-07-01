@@ -14,7 +14,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
+// category icons
 const CATEGORIES: Category[] = [
   { id: "food", name: "Food & Drinks", icon: "fast-food" },
   { id: "shopping", name: "Shopping", icon: "cart" },
